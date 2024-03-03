@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese New Year Card</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .section {
+            padding: 50px 20px;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+            position: relative; /* Position relative for absolute positioning */
+            overflow: hidden; /* Hide overflow to prevent dragon overflow */
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section:nth-child(odd) {
+            background-color: #333;
+        }
+
+        .section:nth-child(even) {
+            background-color: #777;
+        }
+
+        /* Background GIF for the first section */
+        .section:first-child {
+            background: url('gonghe.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Background image for the second section */
+        .section:nth-child(2) { 
+            background: url('move_dragon.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .section:nth-child(3) {
+            background: url('Happy New Year.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+        /* Scroll down message */
+        .scroll-down {
+            display: block; /* Initially visible */
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            z-index: 1; /* Ensure it's above other content */
+        }
+
+        /* Down arrow */
+        .scroll-down .arrow {
+            margin-top: 10px;
+            width: 30px;
+            height: 30px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+        }
+
+        .dragon-animation img {
+            background-color: transparent; /* Set the background color of the image to transparent */
+        }
+
+        .dragon-animation {
+            position: absolute;
+            top: 50%; /* Adjust as needed */
+            left: -200px; /* Start position off-screen */
+            transform: translateY(-50%);
+            animation: enlargeDragon 5s linear forwards; /* Enlarge dragon animation */
+            z-index: 2; /* Ensure the dragon is above other content */
+        }
+
+        @keyframes enlargeDragon {
+            0% { left: -200px; } /* Starting position off-screen */
+            100% { left: 125%; transform: translateY(-50%) scale(2); } /* Enlarged size and position */
+        }
+        .back-button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="section">
+        <div class="dragon-animation">
+            <img src="fire_dragon.gif" alt="Flying Dragon">
+        </div>
+        <div class="content">
+            <h1>Happy Dragon Year</h1>
+            
+        </div>
+        <div class="scroll-down">
+            Scroll down to see more<br>
+            <div class="arrow"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content"style="color: yellow;">
+            <div id="card">
+                <h1>Happy Chinese New Year!</h1>
+                <p>Wishing you prosperity, good luck, and happiness in 2024.</p>
+                <img src="dragon.jpg">
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section3"> <!-- Added id for targeting -->
+        <div class="content" >
+            <h1>Share This To Your Friend or Family!!</h1>
+
+            <!-- Button to go back to whatsapp_send.html -->
+            <a href="whatsapp_send.html" class="back-button">Go back to WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- Include more sections as needed -->
+
+    <audio id="backgroundMusic" loop>
+        <source src="the-land-of-fire-dragons.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            var audio = document.getElementById("backgroundMusic");
+            document.addEventListener("click", function() {
+                audio.play();
+            });
+        });
+    </script>
+
+    <script>
+        window.addEventListener("scroll", function() {
+            var section3 = document.getElementById("section3");
+            var scrollDown = document.querySelector(".scroll-down");
+            var section3Position = section3.getBoundingClientRect().top;
+            if (section3Position <= window.innerHeight) {
+                scrollDown.style.display = "none";
+            } else {
+                scrollDown.style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>

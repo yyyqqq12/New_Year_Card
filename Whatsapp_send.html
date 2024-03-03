@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy New Year</title>
+  <style>
+    body {
+      background-color: #500000; 
+      color: #ffffff; 
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1, p {
+      display: inline-block; 
+      text-align: center;
+      margin: 0; 
+    }
+
+    h1 {
+      font-size: 2em; 
+    }
+
+    p {
+      font-size: 1.2em; 
+    }
+
+    form {
+      background-color: #b80101; 
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #ffffff; 
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ffffff; 
+      border-radius: 5px;
+      background-color: #d00000; 
+      color: #ffffff; 
+    }
+
+    button {
+      background-color: #4CAF50; 
+      color: #ffffff; 
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button img {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy New Year!</h1>
+  <br>
+  <p>Wishing you a wonderful and prosperous new year!</p>
+
+  <form id="whatsappForm">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <button type="button" onclick="sendWhatsAppMessage()">
+      <img id="img1" src="WhatsApp.svg.webp" width="20" alt="WhatsApp Icon">
+      Send New Year Wishes on WhatsApp
+    </button>
+  </form>
+
+  <script>
+    function sendWhatsAppMessage() {
+      var name = document.getElementById('name').value;
+      var phone = document.getElementById('phone').value;
+
+      // Validate phone number (you can add more validation if needed)
+      if (!phone.match(/^\d+$/)) {
+        alert('Please enter a valid phone number.');
+        return;
+      }
+
+      // Create WhatsApp link with the pre-filled message
+      var message = encodeURIComponent("Happy New Year, " + name + "!! Wishing you a wonderful and prosperous new year!");
+      var whatsappLink = "https://wa.me/" + phone + "?text=" + message;
+
+      // Open WhatsApp link in a new window
+      window.open(whatsappLink, '_blank');
+    }
+  </script>
+</body>
+</html>
